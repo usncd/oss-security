@@ -43,7 +43,7 @@ jobs:
             if [[ "$SUBMISSION" = "$CHECK" ]]; then
               echo "Submission match"
               echo "RESULT=pass" >> "$GITHUB_OUTPUT";
-              echo "MESSAGE='🤩 Wow, you are an open source hero! Find a volunteer from the Office of the National Cyber Director (ONCD) and show them what you've done! (Note: you will need prove you own this GitHub account.)'" >> "$GITHUB_OUTPUT";
+              echo "MESSAGE='🤩 Wow, you are an open source hero! Find a volunteer from the Office of the National Cyber Director (ONCD) and show them what you have done! (Note: you will need prove you own this GitHub account.)'" >> "$GITHUB_OUTPUT";
             else
               echo "Submission does not match"
               echo "RESULT=fail" >> "$GITHUB_OUTPUT";
