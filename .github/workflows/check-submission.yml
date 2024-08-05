@@ -1,0 +1,77 @@
+name: Check Submission
+
+on:
+  pull_request_target:
+    branches: [ "main" ]
+    paths:
+      - 'plank-holders.md'
+
+jobs:
+  check-submission:
+    runs-on: macos-latest
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout Target
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.base.repo.full_name }}
+          ref: main
+          path: target
+
+      - name: Checkout Source
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          path: source
+
+      - name: Check Submission
+        id: check_submission
+        run: >-
+          HASH_INPUT="${{ github.event.pull_request.user.login }}-${{ secrets.PHRASE }}-${{ secrets.WG }}";
+          
+          echo "Checking diff from ${{ github.event.pull_request.head.ref }} on ${{ github.event.pull_request.head.repo.full_name }}...";
+          SUBMISSION=`(diff target/plank-holders.md source/plank-holders.md || true) | awk '/\* @${{ github.event.pull_request.user.login }}/{ print $4 }'`;
+          CHECK=`echo -n "$HASH_INPUT" | openssl dgst -${{ secrets.ALGO }} | awk '/[a-z0-9]+/{ print $2 }'`;
+          
+          if [[ "$SUBMISSION" =~ ^[a-zA-Z0-9]+$ ]]; then
+            echo "Confirming submission ($SUBMISSION) for ${{ github.event.pull_request.user.login }} equals check...";
+            
+            if [[ "$SUBMISSION" = "$CHECK" ]]; then
+              echo "Submission match"
+              echo "RESULT=pass" >> "$GITHUB_OUTPUT";
+              echo "MESSAGE='🤩 Wow, you are an open source hero! Find a volunteer from the Office of the National Cyber Director (ONCD) and show them what you've done! (Note: you will need prove you own this GitHub account.)'" >> "$GITHUB_OUTPUT";
+            else
+              echo "Submission does not match"
+              echo "RESULT=fail" >> "$GITHUB_OUTPUT";
+              echo "MESSAGE='😔 Sorry, but that is not the right hash. Have you found all of the clues?'" >> "$GITHUB_OUTPUT";
+            fi
+          else
+            echo "Invalid submission"
+            echo "RESULT=fail" >> "$GITHUB_OUTPUT";
+            echo "MESSAGE='🤔 Sorry, but that hash does not look right. Have you found all of the clues?'" >> "$GITHUB_OUTPUT";
+          fi
+      
+      - name: Post Message
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: ${{ steps.check_submission.outputs.MESSAGE }}
+            })
+      - name: End Job
+        env:
+          RESULT: ${{ steps.check_submission.outputs.RESULT }}
+        run: >-
+          echo "RESULT=$RESULT";
+          if [[ "$RESULT" = "pass" ]]; then
+            exit 0;
+          else
+            exit 1;
+          fi
