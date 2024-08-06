@@ -33,7 +33,7 @@ _Read the full Back to the Building Blocks Report_ [here](https://www.whitehouse
 ## DEF CON 32 Badge Challenge
 While the Federal Government has an important role to play, so do you! For DEF CON 32 we are launching a challenge to find additional open source software security “plank holders.” These are people who have committed themselves early on to supporting a secure and trustworthy open source software ecosystem. 
 
-**The Challenge:** find the clues needed to add yourself to the Plank Holder List, and then do it! 
+**The Challenge:** find the clues needed to add yourself to the [Plank Holder List](https://github.com/usncd/oss-security/blob/main/plank-holders.md#plank-holder-list), and then do it! 
 
 Once your submission is verified successfully you can come claim your badge outside the DEF CON Policy Village at the following times (while supplies last):
 * Friday, August 9th @ 12 – 1 pm
