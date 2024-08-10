@@ -16,7 +16,7 @@ jobs:
 
       - name: Compute and check SHA-512 hash
         run: |
-          HASH_INPUT="Your data or input string here"
+          HASH_INPUT="Final OSS RFI Summary Report.pdf"
           
           # Get the hash algorithm from the secret
           HASH_ALGO=${{ secrets.ALGO }}
