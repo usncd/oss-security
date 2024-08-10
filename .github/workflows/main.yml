@@ -1,0 +1,40 @@
+name: Hash Verification
+
+on:
+  pull_request:
+    paths:
+      - 'target/plank-holders.md'
+      - 'source/plank-holders.md'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Compute and check SHA-512 hash
+        run: |
+          HASH_INPUT="Your data or input string here"
+          
+          # Get the hash algorithm from the secret
+          HASH_ALGO=${{ secrets.ALGO }}
+          
+          # Compute the hash
+          CHECK=$(echo -n "$HASH_INPUT" | openssl dgst -$HASH_ALGO | awk '{ print $2 }')
+
+          # Output the hash for debugging
+          echo "Computed hash: $CHECK"
+          
+          # Example condition to check if hash matches a known value
+          KNOWN_HASH="your-known-sha512-hash-here"
+          if [[ "$CHECK" == "$KNOWN_HASH" ]]; then
+            echo "Hash matches"
+            echo "RESULT=pass" >> "$GITHUB_OUTPUT"
+            echo "MESSAGE='Hash matches the expected value!'" >> "$GITHUB_OUTPUT"
+          else
+            echo "Hash does not match"
+            echo "RESULT=fail" >> "$GITHUB_OUTPUT"
+            echo "MESSAGE='Hash does not match the expected value.'" >> "$GITHUB_OUTPUT"
+          fi
