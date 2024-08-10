@@ -6,9 +6,11 @@ This is the list of OSS Security "plank holders": people who have committed them
 
 You can add your name to the list below with your GitHub handle and the correct, unique hash for your GitHub account. To do so, fork this repository, add your username and hash, and open a Pull Request to the upstream repository. Not sure how to generate the hash? Perhaps check with ONCD personnel at DEF CON 32!
 
-> PRs will be evaluated automatically by our CI pipeline. In order to be added to the list, your PR **must pass the CI status check**.
+> [//]: # (sha512 is SO last year... whirling down the drain)
 
-> [//]: # (Check for "Open Source Software Security Initiative" WG members)
+> PRs will be evaluated automatically by our CI pipeline. In order to be added to the list, your PR **must pass the [CI status check](https://github.com/usncd/oss-security/blob/main/.github/workflows/check-submission.yml#L34) exactly**.
+
+> [//]: # (Check for "Open Source Software Security Initiative" WG members, they might use the acronym)
 
 ## Plank Holder List
 
