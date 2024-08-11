@@ -8,7 +8,7 @@ You can add your name to the list below with your GitHub handle and the correct,
 
 > [//]: # (sha512 is SO last year... whirling down the drain)
 
-> PRs will be evaluated automatically by our CI pipeline. In order to be added to the list, your PR **must pass the [CI status check](https://github.com/usncd/oss-security/blob/main/.github/workflows/check-submission.yml#L34) exactly**
+> PRs will be evaluated automatically by our CI pipeline. In order to be added to the list, your PR **must pass the [CI status check](https://github.com/usncd/oss-security/blob/main/.github/workflows/check-submission.yml#L34) exactly**.
 
 > [//]: # (Check for "Open Source Software Security Initiative" WG members, they might use the acronym)
 
@@ -18,4 +18,4 @@ You can add your name to the list below with your GitHub handle and the correct,
 * @gexpose d93150e2343a84ec12f70aae34ecd0714c34037ebd6dc0ab8934875038aa4fc62350dd9b8ac7f9a642d36e2708ff827a57737c344e9a739bbc936dd9605cf5b7
 * @pavja2 775f66b421f68523318234ac2a1c938d903d50f6db2ceab6674269bd0d1d78d5ef9ed10e3633b2a739ccfb7260ceece172d2dbfa28a43a59859cd602d298ae69
 * @GRizzle1111
-caa8dadbb94e7a0416ddd2b09f3448c3d41687f08d74a8c1fe03896423b3fd721ba9de56b84bf11545c1034783c8b377f5dbee7d7199b49f434abb9b4a65c0e0
+2d354e6c4cba185da55fc54226348974f18b6720bc6abd48df14eac585d30fde82271f7d80708c01b6e70e4694983b5d1c148b845c2f0587c9ff6ec1e80758c1
